@@ -114,6 +114,18 @@ def detail_lagu():
     print(f"Durasi: {lagu['durasi']}")
 
 
+def urutkan_lagu():
+    """Menampilkan lagu yang diurutkan berdasarkan judul."""
+    if not playlist:
+        print("Playlist masih kosong.")
+        return
+
+    lagu_terurut = sorted(playlist, key=lambda lagu: lagu["judul"].lower())
+    print("\nDAFTAR LAGU BERDASARKAN JUDUL")
+    for nomor, lagu in enumerate(lagu_terurut, start=1):
+        print(f"{nomor}. {lagu['judul']} - {lagu['artis']}")
+
+
 def tampilkan_menu():
     """Menampilkan pilihan menu utama."""
     print("\n===== SISTEM PLAYLIST LAGU =====")
@@ -122,14 +134,15 @@ def tampilkan_menu():
     print("3. Hapus Lagu")
     print("4. Cari Lagu")
     print("5. Detail Lagu")
-    print("6. Keluar")
+    print("6. Urutkan Lagu Berdasarkan Judul")
+    print("7. Keluar")
 
 
 def jalankan_program():
     """Menjalankan menu playlist sampai pengguna memilih keluar."""
     while True:
         tampilkan_menu()
-        pilihan = input("Pilih menu (1-6): ").strip()
+        pilihan = input("Pilih menu (1-7): ").strip()
 
         if pilihan == "1":
             tampilkan_lagu()
@@ -142,6 +155,8 @@ def jalankan_program():
         elif pilihan == "5":
             detail_lagu()
         elif pilihan == "6":
+            urutkan_lagu()
+        elif pilihan == "7":
             print("Terima kasih telah menggunakan playlist.")
             break
         else:
